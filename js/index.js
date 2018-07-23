@@ -8,18 +8,18 @@ function callApi(arg) {
     if (true) {
       resolve(
         fetch('https://randomuser.me/api/', {})
-          .then(response => {
-            // console.log(response);
-            return response.json();
-          })
-          .then(jsonData => {
-            // console.log(jsonData);
-            console.log(jsonData.results[0].email);
-            arg.innerText = jsonData.results[0].email;
-          })
-          .catch(err => {
-            console.log('錯誤:', err);
-          })
+        .then(response => {
+          // console.log(response);
+          return response.json();
+        })
+        .then(jsonData => {
+          // console.log(jsonData);
+          console.log(jsonData.results[0].email);
+          arg.innerText = jsonData.results[0].email;
+        })
+        .catch(err => {
+          console.log('錯誤:', err);
+        })
       );
     } else {
       reject('Reject!');
@@ -51,3 +51,22 @@ async function asyncAwait() {
   }
 }
 asyncAwait();
+
+async function run() {
+  return 'Success!'
+}
+async function failed() {
+  throw 'Error';
+}
+
+(async () => {
+  let a = await run();
+  console.log(a);
+  try {
+    let b = await failed();
+  } catch (err) {
+    console.log(err);
+  }
+})()
+
+console.log('End!');
